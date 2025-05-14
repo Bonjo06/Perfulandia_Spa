@@ -31,4 +31,7 @@ public class Envio {
 
     @Column(nullable = false)
     private Date fechaTermino;
+
+    @Column(nullable = false)
+    private String envioEstado;
 }
