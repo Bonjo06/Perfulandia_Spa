@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.perfulandia_spa.perfulandia_spa.Model.Usuario;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/admin/usuario")
 public class UsuarioController {
 
     @Autowired
