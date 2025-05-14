@@ -18,7 +18,7 @@ import com.perfulandia_spa.perfulandia_spa.Model.Envio;
 import com.perfulandia_spa.perfulandia_spa.Service.EnvioService;
 
 @RestController
-@RequestMapping("/api/v1/envio")
+@RequestMapping("/api/v1/logistica/envio")
 public class EnvioController {
 
     @Autowired
