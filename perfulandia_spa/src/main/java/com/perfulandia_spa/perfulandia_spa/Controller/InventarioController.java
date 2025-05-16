@@ -24,7 +24,7 @@ public class InventarioController {
     @Autowired
     private InventarioService inventarioService;
 
-    @GetMapping
+    @GetMapping("/gerente")
     public ResponseEntity<List<Inventario>> listar(){
         List<Inventario> inventarios = inventarioService.findAll();
         if(inventarios.isEmpty()){
@@ -33,7 +33,7 @@ public class InventarioController {
         return ResponseEntity.ok(inventarios);
     }
 
-    @PostMapping 
+    @PostMapping ("/gerente")
     public ResponseEntity<Inventario> guardar(@RequestBody Inventario inventario){
         Inventario nuevoInventario = inventarioService.save(inventario);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoInventario);
@@ -73,8 +73,25 @@ public class InventarioController {
         }
     }
 
+    @GetMapping("/logistica/{id}")
+    public ResponseEntity<Inventario> search(@PathVariable Long id){
+        try{
+            Inventario inventario = inventarioService.findById(id);
+            return ResponseEntity.ok(inventario);
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
 
-    
+    }    
+
+    @GetMapping("/logistica")
+    public ResponseEntity<List<Inventario>> searchAll(){
+        List<Inventario> inventarios = inventarioService.findAll();
+        if(inventarios.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(inventarios);
+    }
      
 
 }

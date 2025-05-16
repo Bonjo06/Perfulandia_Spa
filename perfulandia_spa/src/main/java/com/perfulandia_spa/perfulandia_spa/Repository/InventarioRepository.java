@@ -9,8 +9,7 @@ import com.perfulandia_spa.perfulandia_spa.Model.Inventario;
 
 public interface InventarioRepository extends JpaRepository<Inventario, Long>{
 
-    //Encontrar inventario por id
-    List<Inventario> findByInvId(Long id);
+
 
     //Encontrar inventario por nombre de producto
     List<Inventario> findByNombreProducto(String nombreProducto);
