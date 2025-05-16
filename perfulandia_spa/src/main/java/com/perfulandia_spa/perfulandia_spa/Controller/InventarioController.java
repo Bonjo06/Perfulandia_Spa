@@ -18,13 +18,13 @@ import com.perfulandia_spa.perfulandia_spa.Model.Inventario;
 import com.perfulandia_spa.perfulandia_spa.Service.InventarioService;
 
 @RestController
-@RequestMapping("/api/v1/inventario")
+@RequestMapping("/api/v1")
 public class InventarioController {
 
     @Autowired
     private InventarioService inventarioService;
 
-    @GetMapping("/gerente")
+    @GetMapping("/gerente/inventario")
     public ResponseEntity<List<Inventario>> listar(){
         List<Inventario> inventarios = inventarioService.findAll();
         if(inventarios.isEmpty()){
@@ -33,13 +33,13 @@ public class InventarioController {
         return ResponseEntity.ok(inventarios);
     }
 
-    @PostMapping ("/gerente")
+    @PostMapping ("/gerente/inventario")
     public ResponseEntity<Inventario> guardar(@RequestBody Inventario inventario){
         Inventario nuevoInventario = inventarioService.save(inventario);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoInventario);
     }
 
-    @GetMapping("/gerente/{id}")
+    @GetMapping("/gerente/inventario/{id}")
     public ResponseEntity<Inventario> buscar(@PathVariable Long id){
         try{
             Inventario inventario = inventarioService.findById(id);
@@ -49,7 +49,7 @@ public class InventarioController {
         }
     }
 
-    @PutMapping("/gerente/{id}")
+    @PutMapping("/gerente/inventario/{id}")
     public ResponseEntity<Inventario> actualizar(@PathVariable Long id, @RequestBody Inventario inventario){
         try{
             Inventario inv = inventarioService.findById(id);
@@ -63,7 +63,7 @@ public class InventarioController {
         }
     }
 
-    @DeleteMapping("/gerente/{id}")
+    @DeleteMapping("/gerente/inventario/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try{
             inventarioService.delete(id);
@@ -73,7 +73,7 @@ public class InventarioController {
         }
     }
 
-    @GetMapping("/logistica/{id}")
+    @GetMapping("/empleado/inventario/{id}")
     public ResponseEntity<Inventario> search(@PathVariable Long id){
         try{
             Inventario inventario = inventarioService.findById(id);
@@ -84,7 +84,7 @@ public class InventarioController {
 
     }    
 
-    @GetMapping("/logistica")
+    @GetMapping("/empleado/inventario")
     public ResponseEntity<List<Inventario>> searchAll(){
         List<Inventario> inventarios = inventarioService.findAll();
         if(inventarios.isEmpty()){
