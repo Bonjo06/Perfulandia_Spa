@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.perfulandia_spa.perfulandia_spa.Model.Sucursal;
 import com.perfulandia_spa.perfulandia_spa.Service.SucursalService;
 
@@ -72,6 +73,9 @@ public class SucursalController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    
+
 
 
 }
