@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase que representa a la tabla usuario en la BD
 @Entity
 @Table(name= "usuario")
 @Data

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase que representa a la tabla sucursal en la BD
 @Entity
 @Table(name= "sucursal")
 @Data
