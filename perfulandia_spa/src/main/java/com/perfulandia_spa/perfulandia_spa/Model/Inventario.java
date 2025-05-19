@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase que representa a la tabla inventario en la BD
 @Entity
 @Table(name= "inventario")
 @Data
@@ -23,5 +24,8 @@ public class Inventario {
 
     @Column(nullable = false)
     private String nombreProducto;
+
+    @Column(nullable = false)
+    private int stock;
 
 }

@@ -18,12 +18,15 @@ import com.perfulandia_spa.perfulandia_spa.Model.Envio;
 import com.perfulandia_spa.perfulandia_spa.Service.EnvioService;
 
 @RestController
+
+//Anotacion que indica la ruta base dentro de la API
 @RequestMapping("/api/v1/logistica/envio")
 public class EnvioController {
 
     @Autowired
     private EnvioService envioService;
 
+    //Anotacion para listar todos los envios que hay en la BD
     @GetMapping
     public ResponseEntity<List<Envio>> listar(){
         List<Envio> envios = envioService.findAll();
@@ -33,12 +36,14 @@ public class EnvioController {
         return ResponseEntity.ok(envios);
     }
 
+    //Anotacion para ingresar un nuevo envio en la BD
     @PostMapping
     public ResponseEntity<Envio> guardar(@RequestBody Envio envios){
         Envio envioNuevo = envioService.save(envios);
         return ResponseEntity.status(HttpStatus.CREATED).body(envioNuevo); 
     }
 
+    //Anotacion para buscar un envio en la BD mediante el id
     @GetMapping("/{id}")
     public ResponseEntity<Envio> buscar(@PathVariable Long id){
         try{
@@ -49,6 +54,7 @@ public class EnvioController {
         }
     }
 
+    //Anotacion para actualizar un envio en la BD mediante el id
     @PutMapping("/{id}")
     public ResponseEntity<Envio> actualizar(@PathVariable Long id, @RequestBody Envio envio){
         try{
@@ -65,6 +71,7 @@ public class EnvioController {
         }
     }
 
+    //Anotacion para eliminar un envio en la BD mediante el id
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try{

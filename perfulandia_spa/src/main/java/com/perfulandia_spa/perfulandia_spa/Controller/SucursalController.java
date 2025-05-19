@@ -19,12 +19,15 @@ import com.perfulandia_spa.perfulandia_spa.Model.Sucursal;
 import com.perfulandia_spa.perfulandia_spa.Service.SucursalService;
 
 @RestController
+
+//Anotacion que indica la ruta base dentro de la API
 @RequestMapping("/api/v1/gerente/sucursal")
 public class SucursalController {
 
     @Autowired
     private SucursalService sucursalService;
 
+    //Anotacion para listar todas las sucursales de la BD
     @GetMapping
     public ResponseEntity<List<Sucursal>> listar(){
         List<Sucursal> sucursales = sucursalService.findAll();
@@ -34,12 +37,14 @@ public class SucursalController {
         return ResponseEntity.ok(sucursales);
     }
 
+    //Anotacion para ingresar una nueva sucursal en la BD
     @PostMapping
     public ResponseEntity<Sucursal> guardar(@RequestBody Sucursal sucursal){
         Sucursal sucursalNew = sucursalService.save(sucursal);
         return ResponseEntity.status(HttpStatus.CREATED).body(sucursalNew);
     }
 
+    //Anotacion para buscar una sucursal en la BD mediante el id
     @GetMapping("/{id}")
     public ResponseEntity<Sucursal> buscar(@PathVariable Long id){
         try{
@@ -50,6 +55,7 @@ public class SucursalController {
         }
     }
 
+    //Anotacion para actualizar una sucursal en la BD mediante el id
     @PutMapping("/{id}")
     public ResponseEntity<Sucursal> actualizar(@PathVariable Long id, @RequestBody Sucursal sucursal){
         try{
@@ -64,6 +70,7 @@ public class SucursalController {
         }
     }
 
+    //Anotacion para eliminar una sucursal de la BDm mediante el id
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try{

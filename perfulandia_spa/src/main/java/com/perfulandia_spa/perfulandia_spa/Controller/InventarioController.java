@@ -18,12 +18,15 @@ import com.perfulandia_spa.perfulandia_spa.Model.Inventario;
 import com.perfulandia_spa.perfulandia_spa.Service.InventarioService;
 
 @RestController
-@RequestMapping("/api/v1/inventario")
+
+//Anotacion que indica la ruta base dentro de la API
+@RequestMapping("/api/v1/inventario") 
 public class InventarioController {
 
     @Autowired
     private InventarioService inventarioService;
 
+    //Anotacion para listar todos los productos de la BD
     @GetMapping("/gerente")
     public ResponseEntity<List<Inventario>> listar(){
         List<Inventario> inventarios = inventarioService.findAll();
@@ -33,12 +36,14 @@ public class InventarioController {
         return ResponseEntity.ok(inventarios);
     }
 
+    //Anotacion para ingresar un nuevo producto en la BD
     @PostMapping ("/gerente")
     public ResponseEntity<Inventario> guardar(@RequestBody Inventario inventario){
         Inventario nuevoInventario = inventarioService.save(inventario);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoInventario);
     }
 
+    //Anotacion para buscar un producto mediante el id en la BD
     @GetMapping("/gerente/{id}")
     public ResponseEntity<Inventario> buscar(@PathVariable Long id){
         try{
@@ -49,6 +54,7 @@ public class InventarioController {
         }
     }
 
+    //Anotacion para Actualizar un producto en la BD mediante el id
     @PutMapping("/gerente/{id}")
     public ResponseEntity<Inventario> actualizar(@PathVariable Long id, @RequestBody Inventario inventario){
         try{
@@ -63,6 +69,7 @@ public class InventarioController {
         }
     }
 
+    //Anotacion para borrar un producto de la BD mediante el id
     @DeleteMapping("/gerente/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try{
@@ -73,6 +80,7 @@ public class InventarioController {
         }
     }
 
+    //Anotacion especificada para empleado logistica donde solo accede a la anotacion GET del inventario, mediante el id
     @GetMapping("/logistica/{id}")
     public ResponseEntity<Inventario> search(@PathVariable Long id){
         try{
@@ -84,6 +92,7 @@ public class InventarioController {
 
     }    
 
+    //Anotacion especificada para empleado logistica, donde solo accede a la anotacion GET del inventario, listandolo completo
     @GetMapping("/logistica")
     public ResponseEntity<List<Inventario>> searchAll(){
         List<Inventario> inventarios = inventarioService.findAll();
