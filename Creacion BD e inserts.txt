@@ -1,6 +1,9 @@
 --Creación BD
 CREATE DATABASE perfulandia_spa
 
+--Consultas
+http://localhost:8080/api/v1/
+
 --Inserts tabla usuario
 INSERT INTO usuario(apellidos, correo, nombres, user_direccion) VALUES
 ('González Soto', 'camila.gonzalez@example.com', 'Camila', 'Av. Providencia 1234, Santiago'),
