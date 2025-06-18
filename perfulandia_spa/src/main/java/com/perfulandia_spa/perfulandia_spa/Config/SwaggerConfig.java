@@ -13,8 +13,8 @@ public class SwaggerConfig {
 
         return new OpenAPI()
             .info(new Info()
-            .title("API 2026 Reservas de Salas")
-            .version("1.0")
-            .description("Documentacion de la API para el sistema de reserva de salas"));
+            .title("API PerfulandiaSpa")
+            .version("2.0")
+            .description("Documentacion de la API para el sistema de PerfulandiaSpa"));
     }
 }
