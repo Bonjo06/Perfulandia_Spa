@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase que representa a la tabla envio en la BD
 @Entity
 @Table(name= "envio")
 @Data
@@ -31,4 +32,7 @@ public class Envio {
 
     @Column(nullable = false)
     private Date fechaTermino;
+
+    @Column(nullable = false)
+    private String envioEstado;
 }

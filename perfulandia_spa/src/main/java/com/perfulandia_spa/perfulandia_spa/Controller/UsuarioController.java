@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.perfulandia_spa.perfulandia_spa.Model.Usuario;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+
+//Anotacion que indica la ruta base dentro de la API
+@RequestMapping("/api/v1/admin/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
+    //Anotacion para listar todos los usuarios de la BD
     @GetMapping
     public ResponseEntity<List<Usuario>> listar(){
         List<Usuario> usuarios = usuarioService.findAll();
@@ -33,12 +36,14 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
+    //Anotacion para agregar un nuevo usuario en la BD
     @PostMapping
     public ResponseEntity<Usuario> guardar(@RequestBody Usuario usuario){
         Usuario usuarioNuevo = usuarioService.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioNuevo); 
     }
 
+    //Anotacion para buscar un usuario en la BD mediante el id
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscar(@PathVariable Long id){
         try{
@@ -49,6 +54,7 @@ public class UsuarioController {
         }
     }
 
+    //Anotacion para actualizar un usuario en la BD mediante el id
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @RequestBody Usuario usuario){
         try{
@@ -66,6 +72,7 @@ public class UsuarioController {
         }
     }
 
+    //Anotacion para eliminar un usuario en la BD mediante el id
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try{

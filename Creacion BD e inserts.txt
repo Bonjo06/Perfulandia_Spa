@@ -1,0 +1,50 @@
+--Creación BD
+CREATE DATABASE perfulandia_spa
+
+--Consultas
+http://localhost:8080/api/v1/
+
+--Inserts tabla usuario
+INSERT INTO usuario(apellidos, correo, nombres, user_direccion) VALUES
+('González Soto', 'camila.gonzalez@example.com', 'Camila', 'Av. Providencia 1234, Santiago'),
+('Muñoz Rivas', 'diego.munoz@example.com', 'Diego', 'Calle Condell 567, Valparaíso'),
+('Rojas Herrera', 'valentina.rojas@example.com', 'Valentina', 'Av. Alemania 890, Temuco'),
+('Silva Torres', 'sebastian.silva@example.com', 'Sebastián', 'Pasaje Los Canelos 45, Concepción'),
+('Vargas Morales', 'fernanda.vargas@example.com', 'Fernanda', 'Camino El Alba 2330, Las Condes'),
+('Castillo Fuentes', 'ignacio.castillo@example.com', 'Ignacio', 'Av. España 1020, Viña del Mar'),
+('Reyes Pizarro', 'martina.reyes@example.com', 'Martina', 'Calle Baquedano 310, Antofagasta'),
+('Navarro Campos', 'matias.navarro@example.com', 'Matías', 'Av. Prat 456, La Serena'),
+('Soto Carrasco', 'isidora.soto@example.com', 'Isidora', 'Camino a Melipilla 3201, Maipú'),
+('Moreno Araya', 'benjamin.moreno@example.com', 'Benjamín', 'Av. O’Higgins 902, Rancagua');
+
+--Inserts tabla sucursal
+INSERT INTO sucursal (suc_direccion) VALUES
+('Calle San Alfonso 455, Barrio Meiggs, Estación Central, Santiago'),
+('Av. Libertad 1348, local 5, Viña del Mar, Valparaíso'),
+('Calle Barros Arana 1250, Centro de Concepción, Biobío');
+
+--Inserts tabla inventario
+INSERT INTO inventario (nombre_producto, stock) VALUES
+('Dior Sauvage Eau de Toilette', 15),
+('Chanel No. 5 Eau de Parfum', 10),
+('Yves Saint Laurent Libre', 20),
+('Armani Acqua di Gio', 25),
+('Carolina Herrera Good Girl', 18),
+('Paco Rabanne 1 Million', 22),
+('Lancôme La Vie Est Belle', 12),
+('Versace Eros', 17),
+('Jean Paul Gaultier Scandal', 14),
+('Tom Ford Black Orchid', 9);
+
+--Inserts tabla envio
+INSERT INTO envio (envio_direccion, envio_estado, fecha_inicio, fecha_termino) VALUES
+('Av. Apoquindo 1234, Las Condes, Santiago', 'En tránsito', '2025-05-10', '2025-05-12'),
+('Calle Prat 567, Valparaíso', 'Entregado', '2025-05-08', '2025-05-09'),
+('Pasaje Los Aromos 22, La Florida, Santiago', 'Pendiente', '2025-05-11', '2025-05-14'),
+('Av. Alemania 890, Temuco', 'Cancelado', '2025-05-07', '2025-05-08'),
+('Camino El Alba 1555, Las Condes', 'En tránsito', '2025-05-10', '2025-05-13'),
+('Av. España 310, Viña del Mar', 'Entregado', '2025-05-05', '2025-05-06'),
+('Calle Baquedano 712, Antofagasta', 'Pendiente', '2025-05-12', '2025-05-15'),
+('Av. Balmaceda 456, Coquimbo', 'En tránsito', '2025-05-09', '2025-05-11'),
+('Calle O’Higgins 89, Rancagua', 'Entregado', '2025-05-06', '2025-05-08'),
+('Pasaje El Roble 103, Punta Arenas', 'En tránsito', '2025-05-13', '2025-05-16');

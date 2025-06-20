@@ -10,12 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase que representa a la tabla inventario en la BD
 @Entity
-@Table(name= "producto")
+@Table(name= "inventario")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Producto {
+public class Inventario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +24,8 @@ public class Producto {
 
     @Column(nullable = false)
     private String nombreProducto;
+
+    @Column(nullable = false)
+    private int stock;
 
 }
