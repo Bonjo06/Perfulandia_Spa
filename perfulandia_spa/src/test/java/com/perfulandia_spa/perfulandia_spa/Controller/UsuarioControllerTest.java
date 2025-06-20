@@ -22,6 +22,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
+import java.util.Date;
 
 @WebMvcTest(UsuarioService.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -49,20 +50,61 @@ public class UsuarioControllerTest {
         when(usuarioService.findAll()).thenReturn(List.of(usuario));
 
         mockMvc.perform(get("/Test/usuarios"))
-                .andExpect(Status().isOk())
-                .andExpect(jsonPath("$nombres").value("Elias Miguel"));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombres").value("Elias Miguel"))
+                .andExpect(jsonPath("$.apellidos").value("Torres Atencio"))
+                .andExpect(jsonPath("$.correo").value("mi.torres@catac"));
     }
+
+    @Test
+    public void testGetUsuarioById() throws Exception {
+        when(usuarioService.findById(1L)).thenReturn(usuario);
+        mockMvc.perform(get("/Test/usuarios/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombres").value("Elias Miguel"))
+                .andExpect(jsonPath("$.apellidos").value("Torres Atencio"))
+                .andExpect(jsonPath("$.correo").value("mi.torres@catac"));
+    }
+
 
     @Test
     public void testCreateUsuario() throws Exception {
         // Define el comportamiento del mock: cuando se llame a save(), devuelve el objeto 
         when(usuarioService.save(any(Usuario.class))).thenReturn(usuario);
 
-        // Realiza una petición POST a /api/estudiantes con el objeto  en formato JSON y verifica que la respuesta sea correcta
+        // Realiza una petición POST a /Test/usuarios con el objeto  en formato JSON y verifica que la respuesta sea correcta
         mockMvc.perform(post("/Test/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(usuario))) // Convierte el objeto  a JSON
-                .andExpect(Status().isOk())
-                .andExpect(jsonPath("$nombres").value("Elias Miguel"));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombres").value("Elias Miguel"))
+                .andExpect(jsonPath("$.apellidos").value("Torres Atencio"))
+                .andExpect(jsonPath("$.correo").value("mi.torres@catac"));
+    }
+    @Test
+    public void testUpdateUsuario() throws Exception {
+        // Define el comportamiento del mock: cuando se llame a save(), devuelve el objeto  actualizado
+        when(usuarioService.save(any(Usuario.class))).thenReturn(usuario);
+
+        // Realiza una petición PUT a /Test/usuarios con el objeto  en formato JSON y verifica que la respuesta sea correcta
+        mockMvc.perform(put("/Test/usuarios/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(usuario))) // Convierte el objeto  a JSON
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombres").value("Elias Miguel"))
+                .andExpect(jsonPath("$.apellidos").value("Torres Atencio"))
+                .andExpect(jsonPath("$.correo").value("mi.torres@catac"));
+    }
+    @Test
+    public void testDeleteUsuario() throws Exception {
+        // Define el comportamiento del mock: cuando se llame a delete(), no hace nada
+        doNothing().when(usuarioService).delete(1L);
+
+        // Realiza una petición DELETE a /Test/usuarios/1 y verifica que la respuesta sea correcta
+        mockMvc.perform(delete("/Test/usuarios/1"))
+                .andExpect(status().isOk());
+
+        // Verifica que el método delete() fue llamado una vez con el ID 1
+        verify(usuarioService, times(1)).delete(1L);
     }
 }
