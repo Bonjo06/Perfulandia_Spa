@@ -24,6 +24,7 @@ public class InventarioControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
     private InventarioService inventarioService;
 
     @Autowired
