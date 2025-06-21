@@ -21,7 +21,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
-import java.util.Date;
 
 @WebMvcTest(EnvioControllerTest.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -29,6 +28,7 @@ public class EnvioControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
     private EnvioService envioService;
 
     @Autowired
@@ -40,8 +40,8 @@ public class EnvioControllerTest {
     void setUp() {
         envio = new Envio();
         envio.setEnvioDireccion("Av siempre viva 747");
-        envio.setFechaInicio(new Date());
-        envio.setFechaTermino(new Date(System.currentTimeMillis() + 3600000));
+        envio.setFechaInicio(new java.sql.Date(System.currentTimeMillis()));
+        envio.setFechaTermino(new java.sql.Date(System.currentTimeMillis() + 3600000));
     }
     @Test
     public void testGetAllEnvios() throws Exception{

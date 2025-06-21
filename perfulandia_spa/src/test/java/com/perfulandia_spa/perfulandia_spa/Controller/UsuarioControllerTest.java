@@ -22,7 +22,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
-import java.util.Date;
 
 @WebMvcTest(UsuarioService.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -30,7 +29,7 @@ public class UsuarioControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    
+    @MockBean
     private UsuarioService usuarioService;
 
     @Autowired

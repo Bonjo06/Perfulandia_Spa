@@ -22,6 +22,7 @@ public class SucursalControllerTest {
     @Autowired
     private MockMvc mockMvc;
     
+    @MockBean
     private SucursalService sucursalService;
 
     @Autowired
