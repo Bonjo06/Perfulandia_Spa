@@ -8,8 +8,8 @@ import com.perfulandia_spa.perfulandia_spa.Repository.EnvioRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,13 +21,14 @@ public class EnvioServiceTest {
     @Autowired
     private EnvioService envioService;
 
-    @MockBean
+    @MockitoBean
     private EnvioRepository envioRepository;
 
     @Test
     public void testFindAll() {
         Envio envio = new Envio();
-        when(envioRepository.findAll()).thenReturn(List.of(new Envio()));
+        envio.setId(1L);
+        when(envioRepository.findAll()).thenReturn(List.of(envio));
 
         List<Envio> envios = envioService.findAll();
 
@@ -40,6 +41,7 @@ public class EnvioServiceTest {
     public void testFindById() {
         Long id = 1L;
         Envio envio = new Envio();
+        envio.setId(id);
         when(envioRepository.findById(id)).thenReturn(Optional.of(envio));
 
         Envio found = envioService.findById(id);
@@ -50,11 +52,12 @@ public class EnvioServiceTest {
     @Test
     public void testSave() {
         Envio envio = new Envio();
+        envio.setId(1L);
         when(envioRepository.save(envio)).thenReturn(envio);
 
         Envio saved = envioService.save(envio);
         assertNotNull(saved);
-        assertEquals(1, saved);
+        assertEquals(1L, saved.getId());
     }
 
     @Test
