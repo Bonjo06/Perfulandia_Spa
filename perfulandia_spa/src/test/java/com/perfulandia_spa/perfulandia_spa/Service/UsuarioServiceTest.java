@@ -8,7 +8,7 @@ import com.perfulandia_spa.perfulandia_spa.Repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +19,13 @@ public class UsuarioServiceTest {
     @Autowired
     private UsuarioService usuarioService;
 
-    @MockBean
+    @MockitoBean
     private UsuarioRepository usuarioRepository;
 
     @Test
     public void testFindAll() {
-        Usuario usuario = new Usuario();
-        when(usuarioRepository.findAll()).thenReturn(List.of(new Usuario()));
+        Usuario usuario = new Usuario(1L, "Elias Miguel", "Torres Atencio", "mi.torres@catac", "San Pablo #5555");
+        when(usuarioRepository.findAll()).thenReturn(List.of(usuario));
 
         List<Usuario> usuarios = usuarioService.findAll();
 
@@ -46,7 +46,7 @@ public class UsuarioServiceTest {
 
     @Test
     public void testSave() {
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario(1L, "Elias Miguel", "Torres Atencio", "mi.torres@catac", "Av España 123");
         when(usuarioRepository.save(usuario)).thenReturn(usuario);
 
         Usuario saved = usuarioService.save(usuario);

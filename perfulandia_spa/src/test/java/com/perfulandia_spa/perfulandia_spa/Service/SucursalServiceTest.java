@@ -8,7 +8,7 @@ import com.perfulandia_spa.perfulandia_spa.Repository.SucursalRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +19,14 @@ public class SucursalServiceTest {
     @Autowired
     private SucursalService sucursalService;
 
-    @MockBean
+    @MockitoBean
     private SucursalRepository sucursalRepository;
 
     @Test
     public void testFindAll() {
         Sucursal sucursal = new Sucursal();
-        when(sucursalRepository.findAll()).thenReturn(List.of(new Sucursal()));
+        sucursal.setId(1L);
+        when(sucursalRepository.findAll()).thenReturn(List.of(sucursal));
 
         List<Sucursal> sucursales = sucursalService.findAll();
 
@@ -38,6 +39,7 @@ public class SucursalServiceTest {
     public void testFindById() {
         Long id = 1L;
         Sucursal sucursal = new Sucursal(id, "Direccion Test");
+        sucursal.setId(id);
         when(sucursalRepository.findById(id)).thenReturn(Optional.of(sucursal));
 
         Sucursal found = sucursalService.findById(id);
@@ -48,6 +50,7 @@ public class SucursalServiceTest {
     @Test
     public void testSave() {
         Sucursal sucursal = new Sucursal();
+        sucursal.setId(1L);
         when(sucursalRepository.save(sucursal)).thenReturn(sucursal);
 
         Sucursal saved = sucursalService.save(sucursal);

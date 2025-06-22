@@ -1,4 +1,5 @@
 package com.perfulandia_spa.perfulandia_spa.Controller;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -10,8 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class SucursalControllerTest {
     @Autowired
     private MockMvc mockMvc;
     
-    @MockBean
+    @MockitoBean
     private SucursalService sucursalService;
 
     @Autowired
@@ -40,16 +41,16 @@ public class SucursalControllerTest {
     public void testGetAllSucursales() throws Exception {
         when(sucursalService.findAll()).thenReturn(List.of(sucursal));
 
-        mockMvc.perform(get("/Test/sucursales"))
+        mockMvc.perform(get("/api/v1/gerente/sucursal"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.sucDireccion").value("Direccion Prueba"));
+                .andExpect(jsonPath("$[0].sucDireccion").value("Direccion Prueba"));
     }
 
     @Test
     public void testGetSucursalById() throws Exception {
         when(sucursalService.findById(1L)).thenReturn(sucursal);
 
-        mockMvc.perform(get("/Test/sucursales/1"))
+        mockMvc.perform(get("/api/v1/gerente/sucursal/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.sucDireccion").value("Direccion Prueba"));
     }
@@ -58,7 +59,7 @@ public class SucursalControllerTest {
     public void testCreateSucursal() throws Exception {
         when(sucursalService.save(any(Sucursal.class))).thenReturn(sucursal);
 
-        mockMvc.perform(post("/Test/sucursales")
+        mockMvc.perform(post("/api/v1/gerente/sucursal")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(sucursal)))
                 .andExpect(status().isCreated())
@@ -67,9 +68,10 @@ public class SucursalControllerTest {
 
     @Test
     public void testUpdateSucursal() throws Exception {
+        when(sucursalService.findById(1L)).thenReturn(sucursal);
         when(sucursalService.save(any(Sucursal.class))).thenReturn(sucursal);
 
-        mockMvc.perform(put("/Test/sucursales/1")
+        mockMvc.perform(put("/api/v1/gerente/sucursal/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(sucursal)))
                 .andExpect(status().isOk())
@@ -80,8 +82,8 @@ public class SucursalControllerTest {
     public void testDeleteSucursal() throws Exception {
         doNothing().when(sucursalService).delete(1L);
 
-        mockMvc.perform(delete("/Test/sucursales/1"))
-                .andExpect(status().isNoContent());
+        mockMvc.perform(delete("/api/v1/gerente/sucursal/{id}", 1L))
+                .andExpect(status().isOk());
 
         verify(sucursalService, times(1)).delete(1L);
     }
