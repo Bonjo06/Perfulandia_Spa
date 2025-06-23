@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.perfulandia_spa.perfulandia_spa.Controller.SucursalControllerV2;
 import com.perfulandia_spa.perfulandia_spa.Model.Sucursal;
 
+//Assembler que devuelve las url de los metodos de la clase SucursalControllerV2
 @Component
 public class SucursalModelAssembler implements RepresentationModelAssembler<Sucursal, EntityModel<Sucursal>> {
 

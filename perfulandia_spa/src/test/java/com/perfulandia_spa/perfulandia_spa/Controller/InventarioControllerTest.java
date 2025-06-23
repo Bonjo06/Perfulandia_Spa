@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-//import com.perfulandia_spa.perfulandia_spa.Model.Envio;
+
 import com.perfulandia_spa.perfulandia_spa.Model.Inventario;
 import com.perfulandia_spa.perfulandia_spa.Service.InventarioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+//Clase para probar el controlador InventarioController
 @WebMvcTest(InventarioController.class)
 public class InventarioControllerTest {
 

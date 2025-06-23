@@ -9,23 +9,21 @@ import com.perfulandia_spa.perfulandia_spa.Model.Usuario;
 import com.perfulandia_spa.perfulandia_spa.Service.UsuarioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//import org.aspectj.lang.annotation.Before;
-//import org.hibernate.validator.constraints.ModCheck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.mockito.Mock;
+
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.autoconfigure.AutoConfiguration;
-//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
+
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
+
+//Clase para probar el controlador UsuarioController
 @WebMvcTest(UsuarioController.class)
-//@AutoConfigureMockMvc(addFilters = false)
 public class UsuarioControllerTest {
     @Autowired
     private MockMvc mockMvc;

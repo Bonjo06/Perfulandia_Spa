@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+//Clase para probar el controlador SucursalController
 @WebMvcTest(SucursalController.class)
 public class SucursalControllerTest {
 

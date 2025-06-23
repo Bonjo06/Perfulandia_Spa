@@ -14,6 +14,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.util.List;
 import java.util.Optional;
 
+//Clase para probar el servicio InventarioService
 @SpringBootTest
 @ActiveProfiles("test")
 public class InventarioServiceTest {
