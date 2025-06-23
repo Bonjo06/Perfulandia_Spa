@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.perfulandia_spa.perfulandia_spa.Controller.UsuarioControllerV2;
 import com.perfulandia_spa.perfulandia_spa.Model.Usuario;
 
-
+//Assembler que devuelve las url de los metodos de la clase UsuarioControllerV2
 @Component
 public class UsuarioModelAssembler implements RepresentationModelAssembler<Usuario, EntityModel<Usuario>>{
-@Override
+
+    @Override
     public EntityModel<Usuario> toModel(Usuario usuario) {
         return EntityModel.of(usuario,
                 linkTo(methodOn(UsuarioControllerV2.class).getUsuarioById(usuario.getId())).withSelfRel(),

@@ -7,16 +7,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import com.perfulandia_spa.perfulandia_spa.Model.Envio;
 import com.perfulandia_spa.perfulandia_spa.Service.EnvioService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.jayway.jsonpath.JsonPath;
 
-//import org.aspectj.lang.annotation.Before;
-//import org.hibernate.validator.constraints.ModCheck;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.autoconfigure.AutoConfiguration;
-//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -24,8 +21,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+
+//Clase para probar el controlador EnvioController
 @WebMvcTest(EnvioController.class)
-//  @AutoConfigureMockMvc(addFilters = false)
 public class EnvioControllerTest {
     @Autowired
     private MockMvc mockMvc;

@@ -13,8 +13,8 @@ public class SwaggerConfig {
 
         return new OpenAPI()
             .info(new Info()
-            .title("API PerfulandiaSpa")
-            .version("2.0")
-            .description("Documentacion de la API para el sistema de PerfulandiaSpa"));
+            .title("API PerfulandiaSpa") // Titulo de la API
+            .version("2.0") // Version de la API
+            .description("Documentacion de la API para el sistema de PerfulandiaSpa")); // Descripcion de la API
     }
 }
